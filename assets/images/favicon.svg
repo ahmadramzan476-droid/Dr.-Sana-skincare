@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Restore Skin">
+  <rect width="64" height="64" rx="10" fill="#0B0C0E"/>
+  <text x="32" y="43"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="32" font-weight="400" fill="#C5A880"
+        text-anchor="middle" letter-spacing="-1">RS</text>
+</svg>
