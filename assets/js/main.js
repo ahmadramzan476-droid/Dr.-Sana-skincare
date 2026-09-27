@@ -11,13 +11,11 @@
  */
 
 /* ==========================================================================
-   Configuration — set FORM_ACCESS_KEY before the form will send anything.
-   Get a free key at https://web3forms.com (enter the clinic inbox address,
-   they email the key). No account or backend required.
+   Configuration — n8n webhook receives form submissions, saves to
+   Google Sheets and sends an email notification automatically.
    ========================================================================== */
 
-var FORM_ENDPOINT = 'https://api.web3forms.com/submit';
-var FORM_ACCESS_KEY = 'PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE';
+var FORM_ENDPOINT = 'https://alkhasoffical.app.n8n.cloud/webhook/dr-sana-appointment';
 var CLINIC_PHONE = '+92 318 5161027';
 
 /* --------------------------------------------------------------------------
@@ -435,26 +433,33 @@ var CLINIC_PHONE = '+92 318 5161027';
       return;
     }
 
-    if (FORM_ACCESS_KEY === 'PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE') {
-      setStatus('error', 'This form is not connected yet. Add your Web3Forms access key in main.js, or contact us directly at ' + CLINIC_PHONE + '.');
-      return;
-    }
-
-    var data = new FormData(form);
-    data.delete('company');
-    data.delete('captcha');
-    data.append('access_key', FORM_ACCESS_KEY);
-    data.append('subject', 'New appointment request — Aesthetic Evolution');
-    data.append('from_name', 'Aesthetic Evolution website');
+    var data = {
+      name: String(form.elements.name.value || '').trim(),
+      phone: String(form.elements.phone.value || '').trim(),
+      email: String(form.elements.email.value || '').trim(),
+      service: String(form.elements.service.value || '').trim(),
+      preferred_day: String(form.elements.preferred_day.value || '').trim(),
+      preferred_time: (function () {
+        var radios = form.elements.preferred_time;
+        for (var i = 0; i < radios.length; i++) {
+          if (radios[i].checked) return radios[i].value;
+        }
+        return 'No Preference';
+      })(),
+      message: String(form.elements.message.value || '').trim()
+    };
 
     form.classList.add('is-sending');
     submitBtn.disabled = true;
     labelEl.textContent = 'Sending…';
 
-    fetch(FORM_ENDPOINT, { method: 'POST', body: data })
-      .then(function (response) { return response.json(); })
-      .then(function (result) {
-        if (!result || result.success !== true) throw new Error('rejected');
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(function (response) {
+        if (!response.ok) throw new Error('rejected');
 
         form.reset();
         messageUsed.textContent = '0';
