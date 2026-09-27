@@ -1,0 +1,2177 @@
+/* ==========================================================================
+   Restore Skin — Dr. Sana Waqar · Desktop landing page
+   Rose Gold light theme — full-bleed layout, ivory ground, rose gold accent.
+   Order: fonts → tokens → base → shell → header → sections → footer
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Fonts (self-hosted — see assets/fonts/)
+   -------------------------------------------------------------------------- */
+
+/* Karla 400 */
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/karla-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/karla-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Karla 500 */
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/karla-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/karla-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Karla 600 */
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/karla-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/karla-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Newsreader italic 300 */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/newsreader-italic-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/newsreader-italic-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/newsreader-italic-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Newsreader 300 */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/newsreader-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/newsreader-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/newsreader-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Newsreader 400 */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/newsreader-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/newsreader-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/newsreader-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --------------------------------------------------------------------------
+   2. Design tokens — Rose Gold light theme
+   Warm ivory ground, rose-beige sections, rose gold accent, charcoal type.
+
+   Rose gold (#C9956B) is used for fills, borders, rules and decoration. Where
+   rose gold carries text it steps down the scale to --rose-strong (#96653F),
+   because #C9956B on these light grounds measures ~2.5:1 — below WCAG AA.
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Grounds */
+  --bg: #FDF6F0;
+  --bg-alt: #F5E6D8;
+  --surface: #FFFCF9;
+
+  /* Type */
+  --heading: #2C2420;
+  --text: #4A3F38;
+  --text-muted: #7A6050;   /* #8B6F5E darkened to pass AA on #F5E6D8 */
+  --text-subtle: #8B6F5E;  /* placeholders, non-text UI, text on #FFFCF9 */
+
+  /* Type over the hero photograph, which the scrim darkens.
+     --hero-rose is a pale step of the rose gold: #C9956B itself is a mid-tone
+     and measures under 2.5:1 on the scrim, so it cannot carry small text
+     there however dark the veil is made. */
+  --hero-ink: #FFFCF9;
+  --hero-ink-soft: rgba(255, 252, 249, 0.88);
+  --hero-rose: #F0D6BC;
+
+  /* Rose gold scale */
+  --rose: #C9956B;
+  --rose-hover: #B07A50;
+  --rose-strong: #96653F;  /* rose gold as text; primary button fill */
+  --rose-deep: #7A5033;    /* primary hover; rose text on #F5E6D8 */
+
+  /* Lines */
+  --border: #E8D5C4;
+
+  /* Accent (themeable by main.js) — drives the primary button fill */
+  --accent: var(--rose-strong);
+  --accent-hover: var(--rose-deep);
+  --accent-ink: var(--surface);
+
+  /* Form status */
+  --error: #A05050;
+  --success: #4A7B5A;
+
+  /* Footer — kept dark for contrast */
+  --footer-bg: #2C2420;
+  --footer-text: #E8D5C4;
+  --footer-heading: #F5E6D8;
+  --footer-link: #C9956B;
+  --footer-rule: rgba(232, 213, 196, 0.2);
+
+  /* Hero scrim: a dark veil that fades out to the right, so the photograph
+     stays visible across the whole hero and the light copy still reads over it.
+     The first two stops are in pixels, not percentages, so the veil always
+     covers the copy column — percentage stops thinned out under the text on
+     narrower desktops. Measured over the bright wall on the left of the
+     photograph, 0.78 puts --surface text at ~7:1. */
+  --scrim: linear-gradient(
+    to right,
+    rgba(44, 36, 32, 0.90) 0,
+    rgba(44, 36, 32, 0.86) 560px,
+    rgba(44, 36, 32, 0.58) 58%,
+    rgba(44, 36, 32, 0.12) 82%,
+    rgba(44, 36, 32, 0) 100%
+  );
+  /* Closes the foot of the hero into the page ground below it. */
+  --scrim-bottom: linear-gradient(to top, var(--bg) 0%, rgba(253, 246, 240, 0) 18%);
+
+  /* Elevation — one soft shadow, used sparingly */
+  --shadow-soft: 0 4px 20px rgba(201, 149, 107, 0.12);
+
+  /* Metrics */
+  --gutter: 24px;
+  --radius: 8px;
+  --measure: 62ch;
+
+  /* Families */
+  --font-sans: 'Karla', 'Helvetica Neue', Helvetica, sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
+}
+
+@media (min-width: 768px) {
+  :root { --gutter: 64px; }
+}
+
+/* Narrow screens have no room for a directional scrim — the copy spans the
+   full width, so the photograph is veiled evenly instead. Thinner than the
+   0.90 the desktop veil reaches under its copy column, so more of the clinic
+   shows through, but still deep enough to carry light text: the values below
+   were set by sampling the composited pixels, not by estimate. */
+@media (max-width: 900px) {
+  :root {
+    --scrim: linear-gradient(
+      to bottom,
+      rgba(44, 36, 32, 0.82) 0%,
+      rgba(44, 36, 32, 0.76) 45%,
+      rgba(44, 36, 32, 0.86) 100%
+    );
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  /* Belt and braces with .page's overflow-x: clip — nothing may scroll
+     sideways, and body is the element a stray fixed overlay would widen. */
+  overflow-x: hidden;
+}
+
+/* Section anchors clear the sticky header instead of landing behind it. */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+/* A field scrolled to by validation needs the same clearance, but less of it —
+   the header is ~76px and an input is short. */
+.field__input {
+  scroll-margin-top: 100px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  /* .hero__bg overrides this on its own rule — it needs a cover height. */
+  height: auto;
+}
+
+a {
+  color: var(--rose-strong);
+  transition: color 160ms ease;
+}
+
+a:hover {
+  color: var(--rose-deep);
+}
+
+::selection {
+  background: var(--rose);
+  color: var(--heading);
+}
+
+:focus-visible {
+  outline: 2px solid var(--rose-strong);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Page shell and shared primitives
+   -------------------------------------------------------------------------- */
+
+.page {
+  width: 100%;
+  /* clip, not hidden: hidden makes this a scroll container and breaks the
+     sticky header. Contains the ±30px pre-reveal offsets. */
+  overflow-x: clip;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+
+.page__main {
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  width: 100%;
+  padding: 56px var(--gutter);
+  display: flex;
+  flex-direction: column;
+  /* Positioning context for the optional top .section-divider hr, so it can
+     lay across the full width even when the section itself is a flex row. */
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .section { padding: 80px var(--gutter); }
+}
+
+/* Rose-beige band. Rose text steps one shade deeper here to hold contrast. */
+.section--alt {
+  background: var(--bg-alt);
+}
+
+/* Centered rule at the top of a section, absolutely positioned so it can
+   span the full section width even when the section is a flex row. Used on
+   selected sections rather than every one — an occasional grace note, not a
+   fence between every band. */
+.section-divider {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 0;
+  width: 80%;
+  max-width: 900px;
+  height: 1px;
+  margin: 0;
+  background: var(--border);
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 44px;
+}
+
+@media (min-width: 900px) {
+  .section-head {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 32px;
+  }
+}
+
+.section-title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 3.4vw, 42px);
+  line-height: 1.14;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--heading);
+}
+
+.section-note {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.section-note--small {
+  font-size: 13px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rose-strong);
+}
+
+.credentials {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  /* Wraps to two lines on a phone, so it needs leading of its own. */
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  color: var(--rose-strong);
+}
+
+/* Buttons ----------------------------------------------------------------- */
+
+/* Sizes below set min-height rather than height, so a label that wraps on a
+   narrow screen grows the button instead of spilling out of it. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+/* Primary — solid rose gold, light text */
+.btn--primary {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn--primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--accent-ink);
+}
+
+/* Secondary — rose gold outline, fills on hover */
+.btn--outline {
+  background: transparent;
+  border: 1px solid var(--rose-hover);
+  color: var(--rose-strong);
+}
+
+.btn--outline:hover {
+  background: var(--rose-strong);
+  border-color: var(--rose-strong);
+  color: var(--surface);
+}
+
+.btn--sm {
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: 14.5px;
+}
+
+.btn--md {
+  min-height: 52px;
+  padding: 13px 26px;
+  font-size: 15.5px;
+}
+
+.btn--lg {
+  min-height: 56px;
+  padding: 14px 28px;
+  font-size: 16px;
+}
+
+.btn--block {
+  width: 100%;
+  max-width: 280px;
+  min-height: 52px;
+  padding: 13px 20px;
+  font-size: 15px;
+}
+
+@media (min-width: 640px) {
+  .btn--sm { padding: 10px 20px; }
+  .btn--md { padding: 13px 30px; }
+  .btn--lg { padding: 14px 32px; }
+}
+
+/* Media frames ------------------------------------------------------------ */
+
+.media {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+}
+
+.media__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   5. Header — solid, no blur
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  min-height: 76px;
+  padding: 12px var(--gutter);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* No wrapping: below 1024px the links live in the mobile menu, so the bar
+     is always brand + actions and must stay one row. */
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .site-header { gap: 24px; }
+}
+
+/* Stacked on narrow screens so the bar still fits the actions beside it;
+   the two parts sit on one baseline once there is room. */
+.brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-height: 44px;
+  min-width: 0;
+  text-decoration: none;
+}
+
+@media (min-width: 560px) {
+  .brand {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+  }
+}
+
+.brand__name {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.1;
+  white-space: nowrap;
+  color: var(--heading);
+}
+
+@media (min-width: 560px) {
+  .brand__name { font-size: 24px; }
+}
+
+/* Sub-brand — sans, mixed case, muted so the serif "Restore Skin" leads. The
+   name is a person, not a category, so it drops the caps and rose colour. */
+.brand__doctor {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--text-subtle);
+}
+
+@media (min-width: 560px) {
+  .brand__doctor { font-size: 12px; }
+}
+
+.site-nav {
+  display: none;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  .site-nav { display: flex; }
+}
+
+/* 44px tall inside the 76px bar, so a tablet in landscape — which reaches
+   this breakpoint on a touch screen — still gets a full tap target. */
+.site-nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14.5px;
+  color: var(--heading);
+  text-decoration: none;
+}
+
+.site-nav__link:hover {
+  color: var(--rose-strong);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .header-actions { gap: 16px; }
+}
+
+.header-actions__phone {
+  display: none;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--heading);
+  text-decoration: none;
+}
+
+/* The phone number and the header CTA are both repeated in the mobile menu,
+   so the bar itself only carries them once there is room. */
+@media (min-width: 900px) {
+  .header-actions__phone { display: inline-flex; }
+}
+
+.header-actions__book {
+  display: none;
+}
+
+@media (min-width: 560px) {
+  .header-actions__book { display: inline-flex; }
+}
+
+/* Hamburger ---------------------------------------------------------------- */
+
+.nav-toggle {
+  /* 44px square: the minimum comfortable tap target. */
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--heading);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.nav-toggle:hover {
+  border-color: var(--rose-hover);
+}
+
+@media (min-width: 1024px) {
+  .nav-toggle { display: none; }
+}
+
+/* Three bars drawn from one element: the box is the middle bar, the two
+   pseudo-elements are the outer ones. */
+.nav-toggle__bars,
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+.nav-toggle__bars {
+  position: relative;
+}
+
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle__bars::before { top: -6px; }
+.nav-toggle__bars::after  { top: 6px; }
+
+/* Mobile menu -------------------------------------------------------------- */
+
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+.mobile-nav[hidden] {
+  display: none;
+}
+
+.mobile-nav__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 36, 32, 0.45);
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.mobile-nav__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(88vw, 340px);
+  padding: 20px var(--gutter) 32px;
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  box-shadow: -8px 0 32px rgba(44, 36, 32, 0.14);
+  display: flex;
+  flex-direction: column;
+  /* Long menus stay reachable on short screens in landscape. */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform: translateX(100%);
+  transition: transform 260ms ease;
+}
+
+.mobile-nav.is-open .mobile-nav__backdrop { opacity: 1; }
+.mobile-nav.is-open .mobile-nav__panel { transform: none; }
+
+.mobile-nav__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 8px;
+}
+
+.mobile-nav__title {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.mobile-nav__close {
+  width: 44px;
+  height: 44px;
+  /* Pulled to the panel edge so the icon lines up with the content, while the
+     tap target keeps its full 44px. */
+  margin-right: -10px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius);
+  color: var(--heading);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-nav__close:hover {
+  color: var(--rose-strong);
+}
+
+.mobile-nav__links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.mobile-nav__link {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 17px;
+  color: var(--heading);
+  text-decoration: none;
+}
+
+.mobile-nav__link:hover {
+  color: var(--rose-strong);
+}
+
+.mobile-nav__foot {
+  margin-top: auto;
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mobile-nav__phone {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--heading);
+  text-decoration: none;
+}
+
+.mobile-nav__phone:hover {
+  color: var(--rose-strong);
+}
+
+.mobile-nav__cta {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav__backdrop,
+  .mobile-nav__panel {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero — full-bleed photograph under a cream scrim
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+  padding: 72px var(--gutter);
+  overflow: hidden;
+  isolation: isolate;
+  /* Dark ground: it shows only in the instant before the photograph paints,
+     and the hero copy is light from the first frame. */
+  background: var(--heading);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 85vh;
+    padding: 96px var(--gutter);
+  }
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Biased downward: the top of the frame is mostly ceiling. */
+  object-position: center 58%;
+}
+
+/* Narrow crops lose the reception desk and signage if they stay centred,
+   so the frame pans left to keep them in shot. */
+@media (max-width: 700px) {
+  .hero__bg { object-position: 38% 55%; }
+}
+
+/* Scrim on a pseudo-element, behind the copy but over the photograph. It sits
+   at z-index -1 and so is never in the way of a pointer, but pointer-events
+   is set explicitly in case the stacking ever changes. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--scrim-bottom), var(--scrim);
+}
+
+.hero__copy {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__title {
+  margin: 16px 0 0;
+  font-family: var(--font-serif);
+  /* Floor of 29px keeps the headline to three or four lines on a 360px screen. */
+  font-size: clamp(29px, 5.2vw, 58px);
+  line-height: 1.12;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--hero-ink);
+}
+
+.hero__lead {
+  margin: 20px 0 0;
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.7;
+  color: var(--hero-ink-soft);
+  max-width: 56ch;
+}
+
+/* The light sections deepen rose gold to hold contrast; over the scrim it has
+   to go the other way and lighten instead. The editorial rule above the label
+   is a rose-gold hairline: a nod to the layout of luxury print. */
+.hero .eyebrow {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: var(--hero-rose);
+}
+
+.hero .eyebrow::before {
+  content: "";
+  width: 40px;
+  height: 1.5px;
+  margin-bottom: 12px;
+  background: var(--rose);
+}
+
+.hero__credentials {
+  margin-top: 20px;
+  color: var(--hero-ink-soft);
+}
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* Side by side once there is room for two comfortable tap targets. */
+@media (min-width: 400px) {
+  .hero__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hero__actions .btn {
+    flex: 1 1 auto;
+  }
+}
+
+@media (min-width: 560px) {
+  .hero__actions .btn { flex: 0 0 auto; }
+}
+
+/* Buttons on the photograph — the page's rose-on-cream outline would all but
+   vanish against the scrim, so the secondary button goes light-on-dark. */
+.hero__actions .btn--primary {
+  background: var(--rose);
+  border-color: var(--rose);
+  color: var(--surface);
+}
+
+.hero__actions .btn--primary:hover {
+  background: var(--rose-hover);
+  border-color: var(--rose-hover);
+}
+
+.hero__actions .btn--outline {
+  border-color: rgba(255, 252, 249, 0.6);
+  color: var(--surface);
+}
+
+.hero__actions .btn--outline:hover {
+  background: rgba(255, 252, 249, 0.15);
+  border-color: var(--surface);
+  color: var(--surface);
+}
+
+/* --------------------------------------------------------------------------
+   7. Treatments
+   -------------------------------------------------------------------------- */
+
+.treatments__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .treatments__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .treatments__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.treatment {
+  padding: 24px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  /* Stacked so the number reads as an editorial section marker above the
+     title, rather than a small caption beside it. */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Border and shadow only — no lift, no scale. */
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .treatment {
+    padding: 30px 28px;
+    gap: 14px;
+  }
+}
+
+.treatment:hover {
+  box-shadow: 0 6px 24px rgba(201, 149, 107, 0.10);
+  border-color: #D4B89A;
+}
+
+.treatment__number {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--rose-strong);
+  letter-spacing: 0;
+}
+
+.treatment__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.treatment__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.treatment__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.treatment__list li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.treatment__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--rose);
+}
+
+.treatments__link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 28px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rose-strong);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--rose);
+}
+
+.treatments__link:hover {
+  color: var(--rose-deep);
+  text-decoration-color: var(--rose-hover);
+}
+
+/* --------------------------------------------------------------------------
+   8. Meet the doctor
+   -------------------------------------------------------------------------- */
+
+.about {
+  gap: 48px;
+}
+
+@media (min-width: 1024px) {
+  .about {
+    flex-direction: row;
+    gap: 64px;
+  }
+}
+
+.about__aside {
+  width: 100%;
+  max-width: 420px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.about__portrait {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  box-shadow: var(--shadow-soft);
+}
+
+.about__quote {
+  position: relative;
+  margin: 0;
+  /* Top padding leaves room for the decorative quote mark to sit inside the
+     block, keeping the italic text vertically aligned with the border. */
+  padding: 40px 0 0 24px;
+  border-left: 2px solid var(--rose);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.55;
+  font-weight: 300;
+  color: var(--heading);
+}
+
+/* Editorial opening mark: transparent enough to sit behind the italic text
+   without competing with it. */
+.about__quote::before {
+  content: "\201C";
+  position: absolute;
+  top: 6px;
+  left: 14px;
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--rose);
+  opacity: 0.3;
+  /* Purely decorative — assistive tech should skip it. */
+  pointer-events: none;
+}
+
+.about__body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.about__role {
+  margin: 16px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rose-deep);
+}
+
+.about__bio {
+  margin: 20px 0 0;
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--text);
+  max-width: var(--measure);
+}
+
+/* Qualification tags */
+.tags {
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags li {
+  padding: 4px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  /* Fully rounded — reads as a credential pill rather than a boxed chip. */
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-subtle);
+}
+
+.about__trust-title {
+  margin: 44px 0 0;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.trust-list {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 48px;
+}
+
+@media (min-width: 640px) {
+  .trust-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.trust-list li {
+  position: relative;
+  padding: 15px 0 15px 22px;
+  border-top: 1px solid var(--border);
+  font-size: 15.5px;
+  color: var(--text);
+}
+
+.trust-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 23px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--rose);
+}
+
+/* --------------------------------------------------------------------------
+   9. Results
+   -------------------------------------------------------------------------- */
+
+.results__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+@media (min-width: 640px) {
+  .results__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .results__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.result {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.result__frames {
+  height: 260px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+}
+
+@media (min-width: 640px) {
+  .result__frames { height: 320px; }
+}
+
+.result__frame {
+  position: relative;
+  flex-grow: 1;
+}
+
+.result__frame--before {
+  background: var(--bg-alt);
+  border-right: 1px solid var(--border);
+}
+
+.result__frame--after {
+  background: var(--surface);
+}
+
+/* Bottom-left pill: reads as a clinical caption on the image itself, not a
+   headline for the frame. Sentence case, so it belongs to the photograph. */
+.result__tag {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  padding: 4px 10px;
+  background: rgba(44, 36, 32, 0.7);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--surface);
+}
+
+.result__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.result__name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+/* --------------------------------------------------------------------------
+   10. Testimonials
+   -------------------------------------------------------------------------- */
+
+/* Same ground as Results above it — the shared centered divider marks the
+   break instead of a full-width rule. */
+
+.reviews__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .reviews__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .reviews__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.review {
+  margin: 0;
+  padding: 24px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 220px;
+}
+
+/* Pinned to the foot of the card so authors line up across the row, whatever
+   length the quote above. */
+.review__author {
+  margin-top: auto;
+}
+
+@media (min-width: 640px) {
+  .review {
+    padding: 30px 28px;
+    /* Cards in a row share the row's height, so their authors line up. */
+    min-height: 240px;
+  }
+}
+
+/* aria-hidden on the element itself: this is decoration, not a captured
+   rating, so there is no announced value here. */
+.review__stars {
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 2px;
+  color: var(--rose);
+}
+
+.review__quote {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 18.5px;
+  line-height: 1.55;
+  font-weight: 400;
+  color: var(--text);
+}
+
+@media (min-width: 640px) {
+  .review__quote { font-size: 20px; }
+}
+
+.review__author {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--heading);
+}
+
+/* --------------------------------------------------------------------------
+   11. Visit — appointment form beside the clinic card
+   -------------------------------------------------------------------------- */
+
+.visit__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  .visit__layout {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
+
+/* Small uppercase label shared by the clinic card blocks */
+.detail__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   12. Booking band
+   -------------------------------------------------------------------------- */
+
+.book {
+  align-items: stretch;
+}
+
+/* Rose-gold hairline above the closing CTA, echoing the mark above the hero
+   eyebrow — the page opens and closes on the same gesture. */
+.book::before {
+  content: "";
+  align-self: center;
+  width: 60px;
+  height: 1px;
+  margin-bottom: 2rem;
+  background: var(--rose);
+}
+
+.book__inner {
+  width: 100%;
+  padding: 40px 20px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 900px) {
+  .book__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+}
+
+.book__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 620px;
+}
+
+.book__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 3.6vw, 44px);
+  line-height: 1.1;
+  font-weight: 400;
+  color: var(--heading);
+}
+
+.book__text {
+  margin: 0;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.book__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+/* Full width while stacked, then back to its natural width beside the copy. */
+.book__actions .btn {
+  width: 100%;
+  /* The phone number is long; trim the side padding so it holds one line on a
+     320px screen, and let it wrap rather than overflow if it still cannot. */
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.book__note {
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .book__inner { padding: 56px var(--gutter); }
+
+  .book__actions { align-items: flex-start; }
+
+  .book__actions .btn {
+    width: auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .book__note { text-align: left; }
+}
+
+@media (min-width: 900px) {
+  .book__actions { align-items: flex-end; }
+
+  .book__note { text-align: right; }
+}
+
+.book__note {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   13. Footer — dark by design, for contrast at the foot of a light page
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  width: 100%;
+  padding: 72px var(--gutter) 0;
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  display: flex;
+  flex-direction: column;
+}
+
+.site-footer__columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding-bottom: 56px;
+}
+
+@media (min-width: 640px) {
+  .site-footer__columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .site-footer__columns {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 64px;
+  }
+}
+
+.footer-about {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-about__name {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--footer-heading);
+}
+
+.footer-about__text {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--footer-text);
+  max-width: 42ch;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-style: normal;
+}
+
+/* Matches the link rule below: where the rows lose their 44px min-height,
+   the gap takes the spacing back over. */
+@media (hover: hover) and (pointer: fine) {
+  .footer-col { gap: 12px; }
+}
+
+.footer-col__label {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--footer-heading);
+}
+
+.footer-col__text {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--footer-text);
+}
+
+.footer-col__text--hours {
+  line-height: 1.9;
+}
+
+.footer-col__link,
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14.5px;
+  color: var(--footer-link);
+  text-decoration: none;
+}
+
+/* The stacked columns rely on the 44px rows for spacing, so the gap closes up
+   to compensate. With a mouse the rows can go back to their natural height. */
+@media (hover: hover) and (pointer: fine) {
+  .footer-col__link,
+  .footer-social a {
+    min-height: 0;
+  }
+}
+
+.footer-col__link:hover,
+.footer-social a:hover {
+  color: var(--footer-heading);
+}
+
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.site-footer__legal {
+  min-height: 62px;
+  padding: 18px 0;
+  border-top: 1px solid var(--footer-rule);
+  display: flex;
+  align-items: center;
+}
+
+.site-footer__legal span {
+  font-size: 13px;
+  color: var(--footer-text);
+}
+
+/* --------------------------------------------------------------------------
+   14. Appointment form
+   -------------------------------------------------------------------------- */
+
+.booking-form {
+  flex-grow: 1;
+  min-width: 0;
+  padding: 24px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+@media (min-width: 640px) {
+  .booking-form { padding: 32px 28px; }
+}
+
+@media (min-width: 768px) {
+  .booking-form { padding: 36px 36px; }
+}
+
+/* Off-screen rather than display:none — some bots skip hidden inputs. */
+.booking-form__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.field__label {
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--heading);
+}
+
+.field__required,
+.field__optional {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+
+.field__required {
+  color: var(--rose-strong);
+}
+
+.field__optional {
+  color: var(--text-subtle);
+}
+
+.field__input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--heading);
+  font-family: var(--font-sans);
+  /* Never below 16px: iOS Safari zooms the page in on focus if it is. */
+  font-size: 16px;
+  line-height: 1.5;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.field__input::placeholder {
+  color: var(--text-subtle);
+}
+
+.field__input:hover {
+  border-color: var(--rose-hover);
+}
+
+/* Border steps to --rose-strong so the focus state clears 3:1 against the
+   field; the soft rose ring carries the brand colour. */
+.field__input:focus {
+  outline: none;
+  border-color: var(--rose-strong);
+  box-shadow: 0 0 0 3px rgba(201, 149, 107, 0.25);
+}
+
+.field__input--narrow {
+  max-width: 140px;
+}
+
+.field__textarea {
+  resize: vertical;
+  min-height: 112px;
+}
+
+/* Native select arrows can't be styled across browsers, so draw our own. */
+.field__select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%2396653F' stroke-width='1.5' d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px 8px;
+  cursor: pointer;
+}
+
+.field__hint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.field__hint--count {
+  align-self: flex-end;
+  font-variant-numeric: tabular-nums;
+}
+
+.field__error {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--error);
+}
+
+.field__input[aria-invalid="true"],
+.field__input[aria-invalid="true"]:hover,
+.field__input[aria-invalid="true"]:focus {
+  border-color: var(--error);
+}
+
+.field__input[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 3px rgba(160, 80, 80, 0.18);
+}
+
+/* Radio group ------------------------------------------------------------- */
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+/* The whole row is the label, so min-height gives each option a 44px target. */
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 16px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.radio input {
+  appearance: none;
+  -webkit-appearance: none;
+  flex-shrink: 0;
+  /* Inherits 16px from .radio rather than the UA's 13.33px default. */
+  font: inherit;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--text-subtle);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color 160ms ease;
+}
+
+.radio input:checked {
+  border-color: var(--rose-strong);
+  /* Inset ring drawn with a box-shadow so the dot scales with the control. */
+  box-shadow: inset 0 0 0 4px var(--rose-strong);
+}
+
+.radio input:focus-visible {
+  outline: 2px solid var(--rose-strong);
+  outline-offset: 2px;
+}
+
+/* Submit ------------------------------------------------------------------ */
+
+.booking-form__submit {
+  width: 100%;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.booking-form__submit[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.booking-form__spinner {
+  display: none;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 252, 249, 0.35);
+  border-top-color: var(--surface);
+  border-radius: 50%;
+  animation: bf-spin 700ms linear infinite;
+}
+
+/* Shown only while a request is in flight — a loading indicator, not decoration. */
+.booking-form.is-sending .booking-form__spinner {
+  display: block;
+}
+
+@keyframes bf-spin {
+  to { transform: rotate(360deg); }
+}
+
+.form-status {
+  margin: 0;
+  padding: 13px 15px;
+  border-radius: var(--radius);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.form-status--success {
+  background: rgba(74, 123, 90, 0.08);
+  border: 1px solid var(--success);
+  color: var(--success);
+}
+
+.form-status--error {
+  background: rgba(160, 80, 80, 0.07);
+  border: 1px solid var(--error);
+  color: var(--error);
+}
+
+/* --------------------------------------------------------------------------
+   15. Clinic info card
+   -------------------------------------------------------------------------- */
+
+.clinic-card {
+  width: 100%;
+  flex-shrink: 0;
+  padding: 24px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-self: flex-start;
+}
+
+@media (min-width: 640px) {
+  .clinic-card { padding: 28px 26px; }
+}
+
+@media (min-width: 1024px) {
+  .clinic-card { width: 420px; }
+}
+
+.clinic-card__name {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 400;
+  color: var(--heading);
+}
+
+.clinic-card__block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.clinic-card__address {
+  margin: 0;
+  font-style: normal;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.clinic-card__near {
+  color: var(--text-muted);
+}
+
+/* Phone links are the primary action on a handset, so they get a full 44px
+   row to tap. Back to a plain inline link once there is a pointer. */
+.clinic-card__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 15.5px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* Keyed on the pointer, not the width: a tablet in landscape is wider than
+   many laptops but is still tapped with a thumb. */
+@media (hover: hover) and (pointer: fine) {
+  .clinic-card__link {
+    display: inline;
+    min-height: 0;
+  }
+}
+
+.clinic-card__link:hover {
+  color: var(--rose-strong);
+}
+
+/* Fee sits in its own highlight so it registers as the anchor of the card —
+   the label sets the meaning, the amount is the number a patient looks for. */
+.clinic-card__fee-block {
+  padding: 10px 14px;
+  gap: 4px;
+  background: var(--bg-alt);
+  border-left: 3px solid var(--rose);
+  border-radius: 0 6px 6px 0;
+}
+
+/* --text-subtle (#8B6F5E) on the rose-beige highlight is 3.79:1 — under AA
+   for a 12px label. --text-muted (#7A6050) is the token designed for this
+   exact ground and clears 4.5:1. */
+.clinic-card__fee-block .detail__label {
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.clinic-card__fee {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--heading);
+}
+
+.hours-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.hours-table th,
+.hours-table td {
+  padding: 9px 0;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--border);
+  font-weight: 400;
+}
+
+.hours-table tr:first-child th,
+.hours-table tr:first-child td {
+  border-top: 0;
+}
+
+.hours-table th {
+  width: 88px;
+  padding-right: 12px;
+  color: var(--text-muted);
+}
+
+@media (min-width: 640px) {
+  .hours-table th { width: 100px; }
+}
+
+.hours-table td {
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.hours-table__closed th,
+.hours-table__closed td {
+  color: var(--text-muted);
+}
+
+.clinic-card__whatsapp {
+  max-width: none;
+}
+
+.clinic-card__map {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.clinic-card__map iframe {
+  display: block;
+  width: 100%;
+  height: 250px;
+  border: 0;
+}
+
+@media (min-width: 640px) {
+  .clinic-card__map iframe { height: 300px; }
+}
+
+/* --------------------------------------------------------------------------
+   16. Areas served
+   -------------------------------------------------------------------------- */
+
+.areas {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
+.areas__title {
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.areas__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+}
+
+.areas__list li {
+  padding: 7px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* --------------------------------------------------------------------------
+   17. Motion — hero load and scroll reveal
+   Opacity and transform only, so nothing shifts layout. Every duration is
+   under 0.8s and every curve is plain ease — no bounce, spring or elastic.
+   -------------------------------------------------------------------------- */
+
+/* Hero: a one-time load animation. It is on screen at load, so it is never
+   scroll-triggered. */
+/* backwards, not both: holds the hidden start frame during load, then releases
+   the element completely. With both, the finished transform keeps the copy on
+   a compositor layer and the headline loses its sharper text antialiasing. */
+.hero__copy {
+  animation: hero-enter 0.7s ease backwards;
+}
+
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Scroll reveal. The hidden state applies only under .has-reveal, which the
+   head script sets when IntersectionObserver exists and motion is allowed —
+   so content can never be stranded at opacity 0 if main.js fails. */
+.has-reveal [data-animate] {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.has-reveal [data-animate="fade-up"]     { transform: translateY(24px); }
+.has-reveal [data-animate="fade-in"]     { transform: none; }
+.has-reveal [data-animate="slide-left"]  { transform: translateX(-30px); }
+.has-reveal [data-animate="slide-right"] { transform: translateX(30px); }
+
+.has-reveal [data-animate].in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* Below 1024px the paired columns stack, and sideways motion on stacked
+   blocks reads as a glitch — they fade up like everything else instead. */
+@media (max-width: 1023px) {
+  .has-reveal [data-animate="slide-left"],
+  .has-reveal [data-animate="slide-right"] {
+    transform: translateY(24px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   18. Motion preferences
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  a,
+  .btn,
+  .field__input,
+  .radio input {
+    transition: none;
+  }
+
+  .hero__copy {
+    animation: none;
+  }
+
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
