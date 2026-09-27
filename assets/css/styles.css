@@ -161,6 +161,14 @@
   --text-muted: #7A6050;   /* #8B6F5E darkened to pass AA on #F5E6D8 */
   --text-subtle: #8B6F5E;  /* placeholders, non-text UI, text on #FFFCF9 */
 
+  /* Type over the hero photograph, which the scrim darkens.
+     --hero-rose is a pale step of the rose gold: #C9956B itself is a mid-tone
+     and measures under 2.5:1 on the scrim, so it cannot carry small text
+     there however dark the veil is made. */
+  --hero-ink: #FFFCF9;
+  --hero-ink-soft: rgba(255, 252, 249, 0.88);
+  --hero-rose: #F0D6BC;
+
   /* Rose gold scale */
   --rose: #C9956B;
   --rose-hover: #B07A50;
@@ -186,17 +194,22 @@
   --footer-link: #C9956B;
   --footer-rule: rgba(232, 213, 196, 0.2);
 
-  /* Hero scrim: cream behind the copy, clear over the photograph. Stops are
-     in pixels, not percentages, so the veil always covers the 720px copy
-     column — percentage stops thinned out under the text on narrower desktops. */
+  /* Hero scrim: a dark veil that fades out to the right, so the photograph
+     stays visible across the whole hero and the light copy still reads over it.
+     The first two stops are in pixels, not percentages, so the veil always
+     covers the copy column — percentage stops thinned out under the text on
+     narrower desktops. Measured over the bright wall on the left of the
+     photograph, 0.78 puts --surface text at ~7:1. */
   --scrim: linear-gradient(
     to right,
-    var(--bg) 0,
-    rgba(253, 246, 240, 0.94) 720px,
-    rgba(253, 246, 240, 0.50) 1000px,
-    rgba(253, 246, 240, 0) 1400px
+    rgba(44, 36, 32, 0.90) 0,
+    rgba(44, 36, 32, 0.86) 560px,
+    rgba(44, 36, 32, 0.58) 58%,
+    rgba(44, 36, 32, 0.12) 82%,
+    rgba(44, 36, 32, 0) 100%
   );
-  --scrim-bottom: linear-gradient(to top, var(--bg) 0%, rgba(253, 246, 240, 0) 28%);
+  /* Closes the foot of the hero into the page ground below it. */
+  --scrim-bottom: linear-gradient(to top, var(--bg) 0%, rgba(253, 246, 240, 0) 18%);
 
   /* Elevation — one soft shadow, used sparingly */
   --shadow-soft: 0 4px 20px rgba(201, 149, 107, 0.12);
@@ -216,14 +229,17 @@
 }
 
 /* Narrow screens have no room for a directional scrim — the copy spans the
-   full width, so the photograph is veiled evenly instead. */
+   full width, so the photograph is veiled evenly instead. Thinner than the
+   0.90 the desktop veil reaches under its copy column, so more of the clinic
+   shows through, but still deep enough to carry light text: the values below
+   were set by sampling the composited pixels, not by estimate. */
 @media (max-width: 900px) {
   :root {
     --scrim: linear-gradient(
       to bottom,
-      rgba(253, 246, 240, 0.90) 0%,
-      rgba(253, 246, 240, 0.84) 50%,
-      rgba(253, 246, 240, 0.95) 100%
+      rgba(44, 36, 32, 0.82) 0%,
+      rgba(44, 36, 32, 0.76) 45%,
+      rgba(44, 36, 32, 0.86) 100%
     );
   }
 }
@@ -248,11 +264,27 @@ body {
   background: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
+  /* Belt and braces with .page's overflow-x: clip — nothing may scroll
+     sideways, and body is the element a stray fixed overlay would widen. */
+  overflow-x: hidden;
+}
+
+/* Section anchors clear the sticky header instead of landing behind it. */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+/* A field scrolled to by validation needs the same clearance, but less of it —
+   the header is ~76px and an input is short. */
+.field__input {
+  scroll-margin-top: 100px;
 }
 
 img {
   display: block;
   max-width: 100%;
+  /* .hero__bg overrides this on its own rule — it needs a cover height. */
+  height: auto;
 }
 
 a {
@@ -357,18 +389,23 @@ a:hover {
   margin: 0;
   font-size: 13.5px;
   font-weight: 500;
+  /* Wraps to two lines on a phone, so it needs leading of its own. */
+  line-height: 1.7;
   letter-spacing: 0.06em;
   color: var(--rose-strong);
 }
 
 /* Buttons ----------------------------------------------------------------- */
 
+/* Sizes below set min-height rather than height, so a label that wraps on a
+   narrow screen grows the button instead of spilling out of it. */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius);
   font-weight: 600;
+  text-align: center;
   text-decoration: none;
   transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 }
@@ -400,28 +437,35 @@ a:hover {
 }
 
 .btn--sm {
-  height: 44px;
-  padding: 0 20px;
+  min-height: 44px;
+  padding: 10px 18px;
   font-size: 14.5px;
 }
 
 .btn--md {
-  height: 54px;
-  padding: 0 30px;
+  min-height: 52px;
+  padding: 13px 26px;
   font-size: 15.5px;
 }
 
 .btn--lg {
-  height: 56px;
-  padding: 0 32px;
+  min-height: 56px;
+  padding: 14px 28px;
   font-size: 16px;
 }
 
 .btn--block {
   width: 100%;
   max-width: 280px;
-  height: 52px;
+  min-height: 52px;
+  padding: 13px 20px;
   font-size: 15px;
+}
+
+@media (min-width: 640px) {
+  .btn--sm { padding: 10px 20px; }
+  .btn--md { padding: 13px 30px; }
+  .btn--lg { padding: 14px 32px; }
 }
 
 /* Media frames ------------------------------------------------------------ */
@@ -451,36 +495,69 @@ a:hover {
   z-index: 50;
   width: 100%;
   min-height: 76px;
-  padding: 14px var(--gutter);
+  padding: 12px var(--gutter);
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
+  /* No wrapping: below 1024px the links live in the mobile menu, so the bar
+     is always brand + actions and must stay one row. */
+  gap: 16px;
 }
 
+@media (min-width: 768px) {
+  .site-header { gap: 24px; }
+}
+
+/* Stacked on narrow screens so the bar still fits the actions beside it;
+   the two parts sit on one baseline once there is room. */
 .brand {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-height: 44px;
+  min-width: 0;
   text-decoration: none;
+}
+
+@media (min-width: 560px) {
+  .brand {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+  }
 }
 
 .brand__name {
   font-family: var(--font-serif);
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 400;
+  line-height: 1.1;
+  white-space: nowrap;
   color: var(--heading);
 }
 
+@media (min-width: 560px) {
+  .brand__name { font-size: 22px; }
+}
+
 .brand__doctor {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  white-space: nowrap;
   text-transform: uppercase;
   color: var(--rose-strong);
+}
+
+@media (min-width: 560px) {
+  .brand__doctor {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+  }
 }
 
 .site-nav {
@@ -493,7 +570,12 @@ a:hover {
   .site-nav { display: flex; }
 }
 
+/* 44px tall inside the 76px bar, so a tablet in landscape — which reaches
+   this breakpoint on a touch screen — still gets a full tap target. */
 .site-nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-size: 14.5px;
   color: var(--heading);
   text-decoration: none;
@@ -506,19 +588,220 @@ a:hover {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .header-actions { gap: 16px; }
 }
 
 .header-actions__phone {
   display: none;
+  align-items: center;
+  min-height: 44px;
   font-size: 14.5px;
   font-weight: 600;
   color: var(--heading);
   text-decoration: none;
 }
 
+/* The phone number and the header CTA are both repeated in the mobile menu,
+   so the bar itself only carries them once there is room. */
+@media (min-width: 900px) {
+  .header-actions__phone { display: inline-flex; }
+}
+
+.header-actions__book {
+  display: none;
+}
+
 @media (min-width: 560px) {
-  .header-actions__phone { display: inline; }
+  .header-actions__book { display: inline-flex; }
+}
+
+/* Hamburger ---------------------------------------------------------------- */
+
+.nav-toggle {
+  /* 44px square: the minimum comfortable tap target. */
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--heading);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.nav-toggle:hover {
+  border-color: var(--rose-hover);
+}
+
+@media (min-width: 1024px) {
+  .nav-toggle { display: none; }
+}
+
+/* Three bars drawn from one element: the box is the middle bar, the two
+   pseudo-elements are the outer ones. */
+.nav-toggle__bars,
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+.nav-toggle__bars {
+  position: relative;
+}
+
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle__bars::before { top: -6px; }
+.nav-toggle__bars::after  { top: 6px; }
+
+/* Mobile menu -------------------------------------------------------------- */
+
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+.mobile-nav[hidden] {
+  display: none;
+}
+
+.mobile-nav__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 36, 32, 0.45);
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.mobile-nav__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(88vw, 340px);
+  padding: 20px var(--gutter) 32px;
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  box-shadow: -8px 0 32px rgba(44, 36, 32, 0.14);
+  display: flex;
+  flex-direction: column;
+  /* Long menus stay reachable on short screens in landscape. */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform: translateX(100%);
+  transition: transform 260ms ease;
+}
+
+.mobile-nav.is-open .mobile-nav__backdrop { opacity: 1; }
+.mobile-nav.is-open .mobile-nav__panel { transform: none; }
+
+.mobile-nav__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 8px;
+}
+
+.mobile-nav__title {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.mobile-nav__close {
+  width: 44px;
+  height: 44px;
+  /* Pulled to the panel edge so the icon lines up with the content, while the
+     tap target keeps its full 44px. */
+  margin-right: -10px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius);
+  color: var(--heading);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-nav__close:hover {
+  color: var(--rose-strong);
+}
+
+.mobile-nav__links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.mobile-nav__link {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 17px;
+  color: var(--heading);
+  text-decoration: none;
+}
+
+.mobile-nav__link:hover {
+  color: var(--rose-strong);
+}
+
+.mobile-nav__foot {
+  margin-top: auto;
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mobile-nav__phone {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--heading);
+  text-decoration: none;
+}
+
+.mobile-nav__phone:hover {
+  color: var(--rose-strong);
+}
+
+.mobile-nav__cta {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav__backdrop,
+  .mobile-nav__panel {
+    transition: none;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -528,13 +811,22 @@ a:hover {
 .hero {
   position: relative;
   width: 100%;
-  min-height: 85vh;
+  min-height: 78vh;
   display: flex;
   align-items: center;
-  padding: 96px var(--gutter);
+  padding: 72px var(--gutter);
   overflow: hidden;
   isolation: isolate;
-  background: var(--bg);
+  /* Dark ground: it shows only in the instant before the photograph paints,
+     and the hero copy is light from the first frame. */
+  background: var(--heading);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 85vh;
+    padding: 96px var(--gutter);
+  }
 }
 
 .hero__bg {
@@ -548,13 +840,21 @@ a:hover {
   object-position: center 58%;
 }
 
-/* Scrim on a pseudo-element: opaque cream behind the copy, clear over the
-   photograph, closing to the page ground at the foot of the hero. */
+/* Narrow crops lose the reception desk and signage if they stay centred,
+   so the frame pans left to keep them in shot. */
+@media (max-width: 700px) {
+  .hero__bg { object-position: 38% 55%; }
+}
+
+/* Scrim on a pseudo-element, behind the copy but over the photograph. It sits
+   at z-index -1 and so is never in the way of a pointer, but pointer-events
+   is set explicitly in case the stacking ever changes. */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
+  pointer-events: none;
   background: var(--scrim-bottom), var(--scrim);
 }
 
@@ -567,39 +867,83 @@ a:hover {
 }
 
 .hero__title {
-  margin: 20px 0 0;
+  margin: 16px 0 0;
   font-family: var(--font-serif);
-  font-size: clamp(36px, 4.8vw, 58px);
-  line-height: 1.08;
+  /* Floor of 29px keeps the headline to three or four lines on a 360px screen. */
+  font-size: clamp(29px, 5.2vw, 58px);
+  line-height: 1.12;
   font-weight: 400;
   letter-spacing: -0.015em;
-  color: var(--heading);
+  color: var(--hero-ink);
 }
 
 .hero__lead {
-  margin: 24px 0 0;
+  margin: 20px 0 0;
   font-size: clamp(16px, 1.3vw, 18px);
-  line-height: 1.72;
-  color: var(--text);
+  line-height: 1.7;
+  color: var(--hero-ink-soft);
   max-width: 56ch;
 }
 
-/* Small rose text over a photograph steps to the deepest rose to hold 4.5:1. */
-.hero .eyebrow,
-.hero__credentials {
-  color: var(--rose-deep);
+/* The light sections deepen rose gold to hold contrast; over the scrim it has
+   to go the other way and lighten instead. */
+.hero .eyebrow {
+  color: var(--hero-rose);
 }
 
 .hero__credentials {
-  margin-top: 22px;
+  margin-top: 20px;
+  color: var(--hero-ink-soft);
 }
 
 .hero__actions {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 14px;
-  margin-top: 36px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* Side by side once there is room for two comfortable tap targets. */
+@media (min-width: 400px) {
+  .hero__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hero__actions .btn {
+    flex: 1 1 auto;
+  }
+}
+
+@media (min-width: 560px) {
+  .hero__actions .btn { flex: 0 0 auto; }
+}
+
+/* Buttons on the photograph — the page's rose-on-cream outline would all but
+   vanish against the scrim, so the secondary button goes light-on-dark. */
+.hero__actions .btn--primary {
+  background: var(--rose);
+  border-color: var(--rose);
+  color: var(--surface);
+}
+
+.hero__actions .btn--primary:hover {
+  background: var(--rose-hover);
+  border-color: var(--rose-hover);
+}
+
+.hero__actions .btn--outline {
+  border-color: rgba(255, 252, 249, 0.6);
+  color: var(--surface);
+}
+
+.hero__actions .btn--outline:hover {
+  background: rgba(255, 252, 249, 0.15);
+  border-color: var(--surface);
+  color: var(--surface);
 }
 
 /* --------------------------------------------------------------------------
@@ -612,21 +956,28 @@ a:hover {
   gap: 16px;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 640px) {
   .treatments__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
   .treatments__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 .treatment {
-  padding: 28px 26px;
+  padding: 22px 20px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   display: flex;
-  gap: 18px;
+  gap: 14px;
+}
+
+@media (min-width: 640px) {
+  .treatment {
+    padding: 28px 26px;
+    gap: 18px;
+  }
 }
 
 /* Soft shadow only — no lift or scale. */
@@ -686,7 +1037,10 @@ a:hover {
 
 .treatments__link {
   align-self: flex-start;
-  margin-top: 36px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 28px;
   font-size: 15px;
   font-weight: 600;
   color: var(--rose-strong);
@@ -834,11 +1188,11 @@ a:hover {
   gap: 28px;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 640px) {
   .results__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1024px) {
   .results__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
@@ -850,12 +1204,16 @@ a:hover {
 }
 
 .result__frames {
-  height: 320px;
+  height: 260px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   display: flex;
+}
+
+@media (min-width: 640px) {
+  .result__frames { height: 320px; }
 }
 
 .result__frame {
@@ -914,17 +1272,17 @@ a:hover {
   gap: 24px;
 }
 
-@media (min-width: 760px) {
+@media (min-width: 640px) {
   .reviews__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1024px) {
   .reviews__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 .review {
   margin: 0;
-  padding: 30px 28px;
+  padding: 24px 20px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -935,13 +1293,25 @@ a:hover {
   min-height: 220px;
 }
 
+@media (min-width: 640px) {
+  .review {
+    padding: 30px 28px;
+    /* Cards in a row share the row's height, so their authors line up. */
+    min-height: 240px;
+  }
+}
+
 .review__quote {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 18.5px;
   line-height: 1.55;
   font-weight: 400;
   color: var(--text);
+}
+
+@media (min-width: 640px) {
+  .review__quote { font-size: 20px; }
 }
 
 .review__author {
@@ -988,7 +1358,7 @@ a:hover {
 
 .book__inner {
   width: 100%;
-  padding: 56px var(--gutter);
+  padding: 40px 20px;
   background: var(--bg-alt);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1032,13 +1402,42 @@ a:hover {
 .book__actions {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 14px;
   flex-shrink: 0;
 }
 
+/* Full width while stacked, then back to its natural width beside the copy. */
+.book__actions .btn {
+  width: 100%;
+  /* The phone number is long; trim the side padding so it holds one line on a
+     320px screen, and let it wrap rather than overflow if it still cannot. */
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.book__note {
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .book__inner { padding: 56px var(--gutter); }
+
+  .book__actions { align-items: flex-start; }
+
+  .book__actions .btn {
+    width: auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .book__note { text-align: left; }
+}
+
 @media (min-width: 900px) {
   .book__actions { align-items: flex-end; }
+
+  .book__note { text-align: right; }
 }
 
 .book__note {
@@ -1101,8 +1500,14 @@ a:hover {
 .footer-col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 4px;
   font-style: normal;
+}
+
+/* Matches the link rule below: where the rows lose their 44px min-height,
+   the gap takes the spacing back over. */
+@media (hover: hover) and (pointer: fine) {
+  .footer-col { gap: 12px; }
 }
 
 .footer-col__label {
@@ -1125,9 +1530,21 @@ a:hover {
 
 .footer-col__link,
 .footer-social a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-size: 14.5px;
   color: var(--footer-link);
   text-decoration: none;
+}
+
+/* The stacked columns rely on the 44px rows for spacing, so the gap closes up
+   to compensate. With a mouse the rows can go back to their natural height. */
+@media (hover: hover) and (pointer: fine) {
+  .footer-col__link,
+  .footer-social a {
+    min-height: 0;
+  }
 }
 
 .footer-col__link:hover,
@@ -1144,6 +1561,7 @@ a:hover {
 
 .site-footer__legal {
   min-height: 62px;
+  padding: 18px 0;
   border-top: 1px solid var(--footer-rule);
   display: flex;
   align-items: center;
@@ -1161,13 +1579,17 @@ a:hover {
 .booking-form {
   flex-grow: 1;
   min-width: 0;
-  padding: 32px 28px;
+  padding: 24px 16px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+
+@media (min-width: 640px) {
+  .booking-form { padding: 32px 28px; }
 }
 
 @media (min-width: 768px) {
@@ -1230,7 +1652,8 @@ a:hover {
   border-radius: var(--radius);
   color: var(--heading);
   font-family: var(--font-sans);
-  font-size: 15.5px;
+  /* Never below 16px: iOS Safari zooms the page in on focus if it is. */
+  font-size: 16px;
   line-height: 1.5;
   transition: border-color 160ms ease, box-shadow 160ms ease;
 }
@@ -1305,15 +1728,17 @@ a:hover {
 .radio-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2px;
   margin-top: 4px;
 }
 
+/* The whole row is the label, so min-height gives each option a 44px target. */
 .radio {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 15px;
+  min-height: 44px;
+  font-size: 16px;
   color: var(--text);
   cursor: pointer;
 }
@@ -1322,6 +1747,8 @@ a:hover {
   appearance: none;
   -webkit-appearance: none;
   flex-shrink: 0;
+  /* Inherits 16px from .radio rather than the UA's 13.33px default. */
+  font: inherit;
   width: 18px;
   height: 18px;
   margin: 0;
@@ -1402,7 +1829,7 @@ a:hover {
 .clinic-card {
   width: 100%;
   flex-shrink: 0;
-  padding: 28px 26px;
+  padding: 24px 16px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1410,6 +1837,10 @@ a:hover {
   flex-direction: column;
   gap: 24px;
   align-self: flex-start;
+}
+
+@media (min-width: 640px) {
+  .clinic-card { padding: 28px 26px; }
 }
 
 @media (min-width: 1024px) {
@@ -1443,10 +1874,24 @@ a:hover {
   color: var(--text-muted);
 }
 
+/* Phone links are the primary action on a handset, so they get a full 44px
+   row to tap. Back to a plain inline link once there is a pointer. */
 .clinic-card__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-size: 15.5px;
   color: var(--text);
   text-decoration: none;
+}
+
+/* Keyed on the pointer, not the width: a tablet in landscape is wider than
+   many laptops but is still tapped with a thumb. */
+@media (hover: hover) and (pointer: fine) {
+  .clinic-card__link {
+    display: inline;
+    min-height: 0;
+  }
 }
 
 .clinic-card__link:hover {
@@ -1482,8 +1927,13 @@ a:hover {
 }
 
 .hours-table th {
-  width: 100px;
+  width: 88px;
+  padding-right: 12px;
   color: var(--text-muted);
+}
+
+@media (min-width: 640px) {
+  .hours-table th { width: 100px; }
 }
 
 .hours-table td {
@@ -1510,8 +1960,12 @@ a:hover {
 .clinic-card__map iframe {
   display: block;
   width: 100%;
-  height: 300px;
+  height: 250px;
   border: 0;
+}
+
+@media (min-width: 640px) {
+  .clinic-card__map iframe { height: 300px; }
 }
 
 /* --------------------------------------------------------------------------

@@ -1,11 +1,12 @@
 /**
  * Aesthetic Evolution Skincare & Laser Clinic — Dr. Sana Waqar Qureshi
  *
- * Three independent modules:
+ * Four independent modules:
  *   0. Reveal  — scroll-triggered fade/slide via IntersectionObserver.
- *   1. Accent  — carries forward the one themeable value from the original
+ *   1. Nav     — the mobile menu, shown below 1024px where .site-nav is hidden.
+ *   2. Accent  — carries forward the one themeable value from the original
  *                design-component export, now driving --accent (rose gold).
- *   2. Booking — validation, spam protection and submission for the
+ *   3. Booking — validation, spam protection and submission for the
  *                appointment request form in the Visit section.
  */
 
@@ -71,7 +72,137 @@ var CLINIC_PHONE = '+92 318 5161027';
 })();
 
 /* --------------------------------------------------------------------------
-   1. Accent
+   1. Mobile navigation
+
+   The panel is `hidden` while closed, which keeps its links out of the tab
+   order and the accessibility tree. Opening clears `hidden` first and adds
+   .is-open on the next frame, so the slide-in transition has a start frame
+   to animate from; closing reverses that and waits for the transition to end
+   before hiding again.
+   -------------------------------------------------------------------------- */
+
+(function () {
+  'use strict';
+
+  var toggle = document.getElementById('nav-toggle');
+  var nav = document.getElementById('mobile-nav');
+  if (!toggle || !nav) return;
+
+  var panel = nav.querySelector('.mobile-nav__panel');
+  var closeBtn = nav.querySelector('.mobile-nav__close');
+  var DESKTOP = window.matchMedia('(min-width: 1024px)');
+
+  var isOpen = false;
+  var hideTimer = null;
+
+  /** Width of the scrollbar the lock is about to remove, so the page doesn't shift. */
+  function scrollbarWidth() {
+    return window.innerWidth - document.documentElement.clientWidth;
+  }
+
+  function open() {
+    if (isOpen) return;
+    isOpen = true;
+
+    if (hideTimer) {
+      clearTimeout(hideTimer);
+      hideTimer = null;
+    }
+
+    var gap = scrollbarWidth();
+    document.body.style.overflow = 'hidden';
+    if (gap > 0) document.body.style.paddingRight = gap + 'px';
+
+    nav.hidden = false;
+    // Force a reflow so the pre-transition transform is the browser's start frame.
+    void nav.offsetWidth;
+    nav.classList.add('is-open');
+
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
+
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function close(returnFocus) {
+    if (!isOpen) return;
+    isOpen = false;
+
+    nav.classList.remove('is-open');
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+
+    // Hide only once the panel has slid out; 300ms covers the 260ms transition.
+    hideTimer = setTimeout(function () {
+      nav.hidden = true;
+      hideTimer = null;
+    }, 300);
+
+    if (returnFocus) toggle.focus();
+  }
+
+  toggle.addEventListener('click', function () {
+    if (isOpen) close(true); else open();
+  });
+
+  // The backdrop and the close button both carry data-nav-close.
+  nav.addEventListener('click', function (event) {
+    if (event.target.closest('[data-nav-close]')) close(true);
+  });
+
+  // Following a link should dismiss the menu and let the anchor scroll happen.
+  nav.addEventListener('click', function (event) {
+    if (event.target.closest('.mobile-nav__link, .mobile-nav__cta, .mobile-nav__phone')) {
+      close(false);
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (!isOpen) return;
+
+    if (event.key === 'Escape') {
+      close(true);
+      return;
+    }
+
+    // Keep Tab inside the panel while it is modal.
+    if (event.key !== 'Tab' || !panel) return;
+
+    var focusable = panel.querySelectorAll('a[href], button:not([disabled])');
+    if (!focusable.length) return;
+
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  /**
+   * Rotating into landscape can cross into the desktop layout, where the
+   * hamburger is hidden — leaving the menu open and unclosable.
+   */
+  function onBreakpoint(event) {
+    if (event.matches) close(false);
+  }
+
+  if (typeof DESKTOP.addEventListener === 'function') {
+    DESKTOP.addEventListener('change', onBreakpoint);
+  } else if (typeof DESKTOP.addListener === 'function') {
+    DESKTOP.addListener(onBreakpoint);
+  }
+})();
+
+/* --------------------------------------------------------------------------
+   2. Accent
    -------------------------------------------------------------------------- */
 
 (function () {
@@ -118,7 +249,7 @@ var CLINIC_PHONE = '+92 318 5161027';
 })();
 
 /* --------------------------------------------------------------------------
-   2. Appointment form
+   3. Appointment form
    -------------------------------------------------------------------------- */
 
 (function () {

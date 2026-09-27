@@ -50,7 +50,43 @@
     </nav>
     <div class="header-actions">
       <a class="header-actions__phone" href="tel:+923185161027">+92 318 5161027</a>
-      <a class="btn btn--primary btn--sm" href="#visit">Book appointment</a>
+      <a class="btn btn--primary btn--sm header-actions__book" href="#visit">Book appointment</a>
+
+      <!-- Shown below 1024px, where .site-nav is hidden. -->
+      <button class="nav-toggle" type="button" id="nav-toggle"
+              aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu. Inert until .is-open is set; `hidden` keeps it out of the
+         tab order and the accessibility tree while closed. -->
+    <div class="mobile-nav" id="mobile-nav" hidden>
+      <div class="mobile-nav__backdrop" data-nav-close></div>
+      <div class="mobile-nav__panel" role="dialog" aria-modal="true" aria-label="Site menu">
+        <div class="mobile-nav__head">
+          <span class="mobile-nav__title">Menu</span>
+          <button class="mobile-nav__close" type="button" aria-label="Close menu" data-nav-close>
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+              <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor"
+                    stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <nav class="mobile-nav__links" aria-label="Main">
+          <a class="mobile-nav__link" href="#treatments">Treatments</a>
+          <a class="mobile-nav__link" href="#about">The doctor</a>
+          <a class="mobile-nav__link" href="#results">Results</a>
+          <a class="mobile-nav__link" href="#reviews">Reviews</a>
+          <a class="mobile-nav__link" href="#visit">Visit</a>
+        </nav>
+
+        <div class="mobile-nav__foot">
+          <a class="mobile-nav__phone" href="tel:+923185161027">+92 318 5161027</a>
+          <a class="btn btn--primary btn--md mobile-nav__cta" href="#visit">Book appointment</a>
+        </div>
+      </div>
     </div>
   </header>
 
